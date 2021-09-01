@@ -1,0 +1,22 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "A website for taking notes!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilyzhouZYJ/note-taker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lilyzhouZYJ/note-taker/issues"
+  },
+  "homepage": "https://github.com/lilyzhouZYJ/note-taker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
