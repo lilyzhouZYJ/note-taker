@@ -1,0 +1,18 @@
+<html lang="en">
+<body>
+
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="notes content">
+        <h2>Welcome to note-taker!</h2>
+        <% if (notes.length > 0) { %>
+            <% notes.forEach(note => { %>
+                <h3 class="title"><%= note.title %></h3>
+                <p class="snippet"><%= note.snippet %></p>
+            <% }) %>
+        <% } else { %>
+            <p>No notes to display.</p>
+        <% } %>
+    </div>
+</body>
+</html>
