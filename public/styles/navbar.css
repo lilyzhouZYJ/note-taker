@@ -1,18 +1,64 @@
-.nav {
-    float: right;
+nav {
+  background: #e6e6e6;
+  height: 80px;
 }
 
-.logo img {
-    float:left;
+nav a {
+  text-decoration: none;
 }
 
-ul li{
-  display: inline-block; 
-  padding:10px;
-  font-size:20px; 
-  font-family:raleway;
+nav .logo {
+  display: inline-block;
+  margin-left: 15%;
+  color: black;
 }
 
-ul li:hover{
-  color:orange;
+nav ul {
+  list-style: none;
+  text-align: center;
+  float: right;
+  margin-right: 15%;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  display: block;
+  padding: 15px;
+  color: #8c8c8c;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all .5s;
+}
+
+nav ul li a:hover {
+  color: #666666;
+}
+
+nav ul li a {
+  position: relative;
+}
+
+nav ul li a:after{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background:#666666;
+  height: 1px;
+}
+
+nav ul li a:hover:after {
+  width: 100%;
 }

@@ -2,6 +2,10 @@
 
 A website for taking notes!
 
+## Dependencies
+
+- Mongoose: an Object Document Mapping library, to make interaction with MongoDB easier.
+
 ## Usage
 
 Run `npm start`, which runs the start script `node app.js` as specified in `package.json`, to start the server!
