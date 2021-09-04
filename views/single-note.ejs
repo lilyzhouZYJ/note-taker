@@ -1,0 +1,28 @@
+<html lang="en">
+    <%- include('partials/head.ejs') %>
+<body>
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="single-note content">
+        <h1><%= note.title %></h1>
+        <div class="note-body">
+            <p><%= note.body %></p>
+        </div>
+        <a data-doc="<%= note._id %>" class="delete">Delete Note</a>
+    </div>
+
+    <script>
+        // front end delete request
+        const trashcan = document.querySelector('a.delete');
+        trashcan.addEventListener('click', (e) => {
+            const endpoint = `/notes/${ trashcan.dataset.doc }`;
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+            .then((response) => response.json())    // create JS object from the response json sent from server
+            .then((data) => window.location.href = data.redirect)   // redirect to notes
+            .catch((err) => console.log(err))
+        })
+    </script>
+</body>
+</html>

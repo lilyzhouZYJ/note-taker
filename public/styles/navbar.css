@@ -9,8 +9,11 @@ nav a {
 
 nav .logo {
   display: inline-block;
+  height: 100%;
+  margin: 0;
   margin-left: 15%;
   color: black;
+  text-align: center;
 }
 
 nav ul {

@@ -1,3 +1,6 @@
+
+/* General content */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 body {
@@ -6,5 +9,112 @@ body {
 }
 
 .content {
-    margin: 30px 20%;
+    margin: 50px 20%;
+}
+
+.content a {
+    text-decoration: none;
+}
+
+
+
+/* Display notes */
+
+.notes h1 {
+    color: black;
+}
+
+.notes .title {                         /* note title */
+    color: black;
+}
+
+.notes .snippet {                       /* note snippet */
+    color: #8c8c8c;
+}
+
+.notes a {
+    display: block;
+    margin: 30px 0;
+    padding-left: 30px;
+    border-radius: 15px;
+    border: 1px dashed #8c8c8c;
+    transition: all .5s;
+}
+
+.notes a:hover {
+    background-color: #e6e6e6;
+}
+
+
+
+/* Single note page */
+
+.note-body {
+    min-height: 65%;
+}
+
+.delete {
+    float: right;
+    font: inherit;
+    display: block;
+    width: 100px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px dashed #8c8c8c;
+    background: rgb(239, 239, 239);
+    text-align: center;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.delete:hover {
+    background-color: #dfdfdf;
+}
+
+
+
+/* Create new note form */
+
+textarea {
+    resize: vertical;               /* keep width static */
+}
+
+input[type=text],
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px dashed #8c8c8c;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+input[type=text]::placeholder,
+textarea::placeholder {
+    color: rgb(172, 172, 172);
+}
+
+input[type=text]:focus,
+textarea:focus {
+    outline: none;                      /* remove black box */
+    border: 1.3px solid;
+}
+
+button {
+    font: inherit;
+    display: block;
+    width: 100px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px dashed #8c8c8c;
+    background: rgb(239, 239, 239);
+    text-align: center;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #dfdfdf;
 }

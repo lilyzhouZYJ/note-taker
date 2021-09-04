@@ -7,14 +7,18 @@
     <%- include('partials/navbar.ejs') %>
 
     <div class="notes content">
-        <h2>All Notes</h2>
+        <h1>All Notes</h1>
         <% if (notes.length > 0) { %>
             <% notes.forEach(note => { %>
-                <h3 class="title"><%= note.title %></h3>
-                <p class="snippet"><%= note.snippet %></p>
+                <a class="single-note" href="/notes/<%= note._id %>">
+                    <h3 class="title"><%= note.title %></h3>
+                    <p class="snippet"><%= note.snippet %></p>
+                </a>
             <% }) %>
         <% } else { %>
-            <p>No notes to display.</p>
+            <p>You don't have any notes yet...</p>
+            <p>Create your first note?</p>
+            <button onclick="window.location.href = './notes/create-new-note';">Yes!</button>
         <% } %>
     </div>
 </body>

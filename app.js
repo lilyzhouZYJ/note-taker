@@ -32,13 +32,15 @@ app.set('view engine', 'ejs');                          // set EJS as template e
 /* Routes */
 
 app.get('/', (req, res) => {
-    res.redirect('/notes');
+    Note.find().sort({ createdAt: -1 })         // show most recent first
+        .then((result) => {
+            res.render('index', { title: 'Home', notes: result });
+        })
+        .catch(err => console.log(err))
 });
 
 app.get('/about', (req, res) => {
-    res.render('about', {
-        title: 'About',
-    })
+    res.render('about', { title: 'About' })
 })
 
 /* Note routes */
@@ -46,7 +48,7 @@ app.get('/about', (req, res) => {
 app.get('/notes', (req, res) => {
     Note.find().sort({ createdAt: -1 })         // show most recent first
         .then((result) => {
-            res.render('index', { title: 'My Notes', notes: result });
+            res.render('notes', { title: 'My Notes', notes: result });
         })
         .catch(err => console.log(err))
 })
@@ -55,11 +57,31 @@ app.get('/notes/create-new-note', (req, res) => {
     res.render('create-note', { title: 'Create New Note' })
 })
 
-app.post('/notes', (req, res) => {
+app.post('/notes', (req, res) => {              // post request to add notes
     const note = new Note(req.body);
     note.save()
         .then((result) => {
-            res.redirect('/notes');
+            console.log(result._id.toString());
+            res.redirect(`/notes/${ result._id.toString() }`)
         })
         .catch((err) => console.log(err));
+})
+
+app.get('/notes/:id', (req, res) => {           // display single note
+    const id = req.params.id;
+    Note.findById(id)
+        .then((result) => {
+            res.render('single-note', { title: 'Note Details', note: result })
+        })
+        .catch((err) => console.log(err))
+})
+
+app.delete('/notes/:id', (req, res) => {        // delete note request
+    const id = req.params.id;
+    Note.findByIdAndDelete(id)
+        .then(result => {
+            // send json object to front end
+            res.json({ redirect: '/notes' });
+        })
+        .catch(err => console.log(err))
 })
