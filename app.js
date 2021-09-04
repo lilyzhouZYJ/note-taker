@@ -61,7 +61,6 @@ app.post('/notes', (req, res) => {              // post request to add notes
     const note = new Note(req.body);
     note.save()
         .then((result) => {
-            console.log(result._id.toString());
             res.redirect(`/notes/${ result._id.toString() }`)
         })
         .catch((err) => console.log(err));

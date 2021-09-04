@@ -51,6 +51,8 @@ body {
 
 .note-body {
     min-height: 65%;
+    max-width: 80%;
+    line-height: 30px;
 }
 
 .delete {
