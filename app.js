@@ -3,13 +3,26 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const config = require('./config/config.js');           /* configuration */
 
-// passport config
+/* passport config */
 require('./config/passport')(passport);
 
-// express server
+
+/* express server */
 const app = express();
+
+
+/* template engine */
+app.set('views', path.join(__dirname, 'views'));        // set directory for templates
+app.set('view engine', 'ejs');                          // set EJS as template engine to use
+app.locals.moment = require('moment');                  // using momentJS to format dates
+
+
+/* static files in ./public */
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 /* connect to MongoDB */
 mongoose.connect(config.MONGO_URI)
@@ -17,33 +30,44 @@ mongoose.connect(config.MONGO_URI)
     .catch((err) => console.log(err));
 
 
-/* static files in ./public */
-app.use(express.static(path.join(__dirname, 'public')));
+/* Middleware */
 
+// body parser:
+// attach create-new-note form submission data to the request body for POST request
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-/* middleware */
-app.use(express.urlencoded({ extended: true }));        // attach form submission data to request body
-                                                        // for create-new-note form
-// express-session middleware
-app.use(session({
+// session middleware
+const store = new MongoDBStore({                // store session to mongodb
+    uri: config.MONGO_URI,
+    collection: 'sessions'
+});
+
+// catch errors on mongoDBstore
+store.on('error', function(error) {
+    console.log(error);
+});
+
+app.use(session({                               // express session
     secret: 'this is secret',
     resave: false,
     saveUninitialized: false,
+    store: store,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7         // 1 week
+    }
 }));
+
 // passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-/* template engine */
-app.set('views', path.join(__dirname, 'views'));        // set directory for templates
-app.set('view engine', 'ejs');                          // set EJS as template engine to use
 
 
 /* Routes */
 
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
+app.use('/notes', require('./routes/notes'));
 
 // app.get('/', (req, res) => {
 //     Note.find().sort({ createdAt: -1 })         // show most recent first

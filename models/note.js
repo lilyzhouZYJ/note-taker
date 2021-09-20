@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const noteSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     snippet: {
         type: String,
@@ -14,6 +15,19 @@ const noteSchema = new Schema({
     body: {
         type: String,
         required: true
+    },
+    status: {
+        type: String,
+        default: 'public',
+        enum: ['public', 'private'],
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
     }
 }, { timestamps: true });
 

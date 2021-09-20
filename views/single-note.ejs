@@ -4,11 +4,23 @@
     <%- include('partials/navbar.ejs') %>
 
     <div class="single-note content">
-        <h1><%= note.title %></h1>
-        <div class="note-body">
-            <p><%= note.body %></p>
+        <div class="left">
+            <h1><%= note.title %></h1>
+            <div class="note-body">
+                <p><%= note.body %></p>
+            </div>
+            
+            <% if(loggedUser.toString() == note.user._id.toString()){ %>
+                <a href="/notes/edit/<%= note._id %>" class="edit">Edit Note</a>
+                <a data-doc="<%= note._id %>" class="delete">Delete Note</a>
+            <% } %>    
         </div>
-        <a data-doc="<%= note._id %>" class="delete">Delete Note</a>
+
+        <div class="right">
+            <img src="<%= note.user.image %>" class="user-image">
+            <h3><%= note.user.displayName %></h3>
+            <a href="/notes/user/<%= note.user._id %>" class="user-btn">More</a>
+        </div>
     </div>
 
     <script>

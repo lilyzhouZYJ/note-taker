@@ -10,9 +10,18 @@
             <label for="snippet">Snippet:</label>
             <input type="text" id="snippet" name="snippet" placeholder="What is this note about..." required>
             <label for="body">Body:</label>
-            <!-- <input type="text" id="body" name="body" placeholder="Jot down some notes!" required> -->
             <textarea id="body" name="body" rows="15" placeholder="Jot down some notes!" required></textarea>
-            <button>Create!</button>
+            <!-- <input type="checkbox" id="private" name="private" value="private">
+            <label for="private">Make this note private</label><br> -->
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="public" selected>Public</option>
+                <option value="private">Private</option>
+            </select>
+            <div>
+                <button>Create!</button>
+                <button><a href="/dashboard">Cancel</a></button>
+            </div>
         </form>
     </div>
 </body>

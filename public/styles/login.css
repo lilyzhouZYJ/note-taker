@@ -20,11 +20,49 @@ hr {
     width: 75%;
 }
 
+/* About button */
+
+.about-btn {
+    margin: auto;
+    margin-top: 30px;
+    display: block;
+    width: 250px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: rgb(110, 110, 110);
+    cursor: pointer;
+    position: relative;
+}
+
+.about-btn,
+.about-btn:after,
+.about-btn:before {
+  transition: all .5s;
+}
+
+.about-btn:after{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background:rgb(194, 194, 194);
+  height: 1px;
+}
+
+.about-btn:hover:after {
+  width: 75%;
+}
+
 /* Login Google button */
 
 .login-btn {
     margin: auto;
-    margin-top: 30px;
+    margin-top: 40px;
     display: block;
     width: 200px;
     padding: 15px;

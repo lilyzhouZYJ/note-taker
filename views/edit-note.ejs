@@ -1,0 +1,40 @@
+<html lang="en">
+    <%- include('partials/head.ejs') %>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <div class="edit-note content">
+        <h1>Edit note</h1>
+        <form action="/notes/edit/<%= note._id %>" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= note.title %>" required>
+            <label for="snippet">Snippet:</label>
+            <input type="text" id="snippet" name="snippet" value="<%= note.snippet %>" required>
+            <label for="body">Body:</label>
+            <textarea id="body" name="body" rows="15" required><%= note.body %></textarea>
+            <!-- <input type="checkbox" id="private" name="private" value="private">
+            <label for="private">Make this note private</label><br> -->
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="public" selected>Public</option>
+                <option value="private">Private</option>
+            </select>
+            <div>
+                <button>Submit</button>
+                <button><a href="/notes/<%= note._id %>">Cancel</a></button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        
+        const selection = document.getElementById('status');
+        for(var i, j = 0; i = selection.options[j]; j++) {
+            if(i.value == '<%= note.status %>') {
+                i.selected = true;
+            } else {
+                i.selected = false;
+            }
+        }
+    </script>
+</body>
+</html>
