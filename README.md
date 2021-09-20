@@ -2,17 +2,16 @@
 
 A node.js project: a website for taking notes!
 
-## Project Features
-
+Features include:
 - Creating, editing, and deleting notes.
 - Support both public and private notes. A user can view other users' public notes, but not their private ones.
 - User authentication using Google.
 
-## Project Description
+## Description
 
-On the back end, I'm using Express to build my server (in [`app.js`](./app.js)). I'm also using the EJS template engine to render templates that would be sent to the front end.
+This is mostly a server-side/Node.js practice project, so I focused on building the backend mechanisms and tried to keep the frontend as simple as possible.
 
-For the database, I'm using MongoDB, and I'm using the mongoose package to help interact with MongoDB. The schema and model for mongoose are built in [./models/note.js](./models/note.js).
+On the back end, I'm using Express to build my server (in [`app.js`](./app.js)). I'm also using the EJS template engine to render templates that would be sent to the front end. For the database, I'm using [MongoDB](https://www.mongodb.com/), and I'm using the mongoose package to help interact with MongoDB. The schema and model for mongoose are built in [./models/note.js](./models/note.js).
 
 ## Usage
 
